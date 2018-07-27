@@ -1,9 +1,70 @@
-framework module XZKit {
-  umbrella header "XZKit.h"
+// 自定义的 modulemap 文件，可以自定义 OC 代码的模块。
+// Xcode 自动生成的 modulemap 如下：
+//
+// framework module XZKit {
+//     umbrella header "XZKit-umbrella.h"
+//
+//     export *
+//     module * { export * }
+// }
+//
+// module XZKit.Swift {
+//     header "XZKit-Swift.h"
+//     requires objc
+// }
 
-  export *
-  module * { export * }
+
+framework module XZKit {
+
+    umbrella header "XZKit.h"
+
+    module Constant {
+        header "ObjectiveC.h"
+    }
+
+    module Category {
+        header "NSString.h"
+        header "NSData.h"
+        header "NSBundle.h"
+
+        header "UIViewController.h"
+        header "UIImage.h"
+        header "UIColor.h"
+    }
+
+    module AppRedirection {
+        header "XZAppRedirection.h"
+    }
+
+    module AppLanguage {
+        header "NSBundle+AppLanguage.h"
+    }
+
+    module DataDigester {
+        header "NSString+DataDigester.h"
+        header "XZDataDigester.h"
+    }
+
+    module DataCryptor {
+        header "XZDataCryptor.h"
+    }
+
+    module UIImageCacheManager {
+        header "UIImage+CacheManager.h"
+    }
+
+    module CarouselView {
+        header "XZCarouselView.h"
+        header "XZCarouselViewItemView.h"
+        header "XZImageCarouselView.h"
+    }
+
+    export *
 }
+
+
+
+
 
 module XZKit.Swift {
     header "XZKit-Swift.h"

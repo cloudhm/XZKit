@@ -176,9 +176,10 @@ NS_SWIFT_NAME(CarouselView) @interface XZCarouselView : UIView <UIScrollViewDele
 /// 自动布局时，视图将自动调整子视图。
 - (void)layoutSubviews;
 
-/// XZCarouselView 重写了此方法。子类重写必须调用父类方法。
-/// @note 当 XZCarouselView 添加到父视图时，才会处理自动轮播。
-/// @note 当 XZCarouselView 从父视图移除时，将会自动停止轮播。
+/// 如果从 window 上移除（不显示了），XZCarouselView 将停止自动轮播。
+- (void)didMoveToWindow;
+
+/// 如果从父视图移除，XZCarouselView 会自动销毁自动轮播的定时器。
 - (void)didMoveToSuperview;
 
 // UIScrollViewDelegate Methods.

@@ -212,6 +212,135 @@ SWIFT_CLASS_NAMED("CacheManager")
 
 
 
+@class UICollectionView;
+@class XZCollectionViewFlowLayout;
+enum XZCollectionViewFlowLayoutLineAlignment : NSInteger;
+enum XZCollectionViewFlowLayoutInteritemAlignment : NSInteger;
+
+/// CollectionViewFlowLayout 的代理协议，用于自定义每个 Section 的对齐方式。
+SWIFT_PROTOCOL_NAMED("CollectionViewDelegateFlowLayout")
+@protocol XZCollectionViewDelegateFlowLayout <UICollectionViewDelegateFlowLayout>
+@optional
+/// 获取指定 Section 的行对齐方式。
+/// \param collectionView The UICollectionView.
+///
+/// \param collectionViewLayout The CollectionViewFlowLayout.
+///
+/// \param section 指定的 Section 。
+///
+///
+/// returns:
+/// 行对齐方式。
+- (enum XZCollectionViewFlowLayoutLineAlignment)collectionView:(UICollectionView * _Nonnull)collectionView layout:(XZCollectionViewFlowLayout * _Nonnull)collectionViewLayout lineAlignmentForSectionAt:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+/// 获取指定 Section 的元素对齐方式。
+/// \param collectionView The UICollectionView.
+///
+/// \param collectionViewLayout The CollectionViewFlowLayout.
+///
+/// \param section 指定的 Section 。
+///
+///
+/// returns:
+/// 元素对齐方式。
+- (enum XZCollectionViewFlowLayoutInteritemAlignment)collectionView:(UICollectionView * _Nonnull)collectionView layout:(XZCollectionViewFlowLayout * _Nonnull)collectionViewLayout interitemAlignmentForSectionAt:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+/// 支持多种对齐方式的 UICollectionView 自定义布局。
+/// note:
+/// 使用 XZCollectionViewDelegateFlowLayout 作为代理协议，兼容 UICollectionViewDelegateFlowLayout 协议。
+/// note:
+/// 使用 UICollectionView.delegate 作为代理对象。
+/// note:
+/// 对于 zIndex 进行了特殊处理，排序越后的视图 zIndex 越大；Header/Footer 的 zIndex 比 Cell 的大。
+SWIFT_CLASS_NAMED("CollectionViewFlowLayout")
+@interface XZCollectionViewFlowLayout : UICollectionViewLayout
+/// 滚动方向。
+@property (nonatomic) UICollectionViewScrollDirection scrollDirection;
+/// 行间距。滚动方向为垂直时，水平方向为一行；滚动方向为水平时，垂直方向为一行。默认 0 ，代理方法的返回值优先。
+@property (nonatomic) CGFloat minimumLineSpacing;
+/// 内间距。同一行内两个元素之间的距离。默认 0 ，代理方法的返回值优先。
+@property (nonatomic) CGFloat minimumInteritemSpacing;
+/// 元素大小。默认 (50, 50)，代理方法返回的大小优先。
+@property (nonatomic) CGSize itemSize;
+/// SectionHeader 大小，默认 0 ，代理方法的返回值优先。
+@property (nonatomic) CGSize headerReferenceSize;
+/// SectionFooter 大小，默认 0 ，代理方法的返回值优先。
+@property (nonatomic) CGSize footerReferenceSize;
+/// SectionItem 外边距。不包括 SectionHeader/SectionFooter 。默认 .zero ，代理方法的返回值优先。
+@property (nonatomic) UIEdgeInsets sectionInsets;
+/// 行对齐方式，默认 .leading ，代理方法的返回值优先。
+@property (nonatomic) enum XZCollectionViewFlowLayoutLineAlignment lineAlignment;
+/// 元素对齐方式，默认 .median ，代理方法的返回值优先。
+@property (nonatomic) enum XZCollectionViewFlowLayoutInteritemAlignment interitemAlignment;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface XZCollectionViewFlowLayout (SWIFT_EXTENSION(XZKit))
+@end
+
+/// 所有行的的元素排列对齐方式。
+typedef SWIFT_ENUM_NAMED(NSInteger, XZCollectionViewFlowLayoutLineAlignment, "LineAlignment") {
+/// 向首端对齐，末端不足留空。
+/// note:
+/// 首端对齐与布局方向相关，例如 A、B、C 三元素在同一行，自左向右布局 [ A B C _ ]，自右向左则为 [ _ C B A ] 。
+  XZCollectionViewFlowLayoutLineAlignmentLeading = 0,
+/// 向末端对齐，首端不足留空。
+/// note:
+/// 末端对齐与布局方向相关，例如 A、B、C 三元素在同一行，自左向右布局 [ _ A B C ]，自右向左则为 [ C B A _ ] 。
+  XZCollectionViewFlowLayoutLineAlignmentTrailing = 1,
+/// 居中对齐，两端可能留空。
+  XZCollectionViewFlowLayoutLineAlignmentCenter = 2,
+/// 两端对齐，平均分布，占满整行；如果行只有一个元素，该元素首端对齐。
+/// note:
+/// 每行的元素间距可能都不一样。
+  XZCollectionViewFlowLayoutLineAlignmentJustified = 3,
+/// 两端对齐，平均分布，占满整行，如果行只有一个元素，该元素居中对齐。
+/// note:
+/// 每行的元素间距可能都不一样。
+  XZCollectionViewFlowLayoutLineAlignmentJustifiedCenter = 4,
+/// 两端对齐，平均分布，占满整行，如果行只有一个元素，该元素末端对齐。
+/// note:
+/// 每行的元素间距可能都不一样。
+  XZCollectionViewFlowLayoutLineAlignmentJustifiedTrailing = 5,
+};
+
+/// 同一行元素与元素的对齐方式。
+typedef SWIFT_ENUM_NAMED(NSInteger, XZCollectionViewFlowLayoutInteritemAlignment, "InteritemAlignment") {
+/// 垂直滚动时，顶部对齐；水平滚动时，布局方向从左到右，左对齐，布局方向从右到左，右对齐。
+  XZCollectionViewFlowLayoutInteritemAlignmentAscender = 0,
+/// 垂直滚动时，水平中线对齐；水平滚动时，垂直中线对齐。
+  XZCollectionViewFlowLayoutInteritemAlignmentMedian = 1,
+/// 垂直滚动时，底部对齐；水平滚动时，布局方向从左到右，右对齐，布局方向从右到左，左对齐。
+  XZCollectionViewFlowLayoutInteritemAlignmentDescender = 2,
+};
+
+
+
+@class UICollectionViewLayoutAttributes;
+
+@interface XZCollectionViewFlowLayout (SWIFT_EXTENSION(XZKit))
+@property (nonatomic, readonly) CGSize collectionViewContentSize;
+- (void)invalidateLayout;
+/// 当 UICollectionView 的宽度改变时，需重新计算布局。
+/// \param newBounds The collectionView’s new bounds.
+///
+///
+/// returns:
+/// true or false.
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds SWIFT_WARN_UNUSED_RESULT;
+- (void)prepareLayout;
+- (NSArray<UICollectionViewLayoutAttributes *> * _Nullable)layoutAttributesForElementsInRect:(CGRect)rect SWIFT_WARN_UNUSED_RESULT;
+- (UICollectionViewLayoutAttributes * _Nullable)layoutAttributesForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (UICollectionViewLayoutAttributes * _Nullable)layoutAttributesForSupplementaryViewOfKind:(NSString * _Nonnull)elementKind atIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+/// Returns .leftToRight.
+@property (nonatomic, readonly) UIUserInterfaceLayoutDirection developmentLayoutDirection;
+/// Retruns true.
+@property (nonatomic, readonly) BOOL flipsHorizontallyInOppositeLayoutDirection;
+@end
+
 
 /// 包含图片、文字上下显示的触控视图。
 SWIFT_CLASS_NAMED("TitledImageControl")
@@ -236,11 +365,15 @@ SWIFT_CLASS_NAMED("ContentStatusView")
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end
 
+
+
 enum XZImageCacheType : NSInteger;
 @class UIImage;
 
+/// 图片缓存。
 SWIFT_CLASS_NAMED("ImageCacheManager")
 @interface XZImageCacheManager : XZCacheManager
+/// XZKit 默认的图片缓存。
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) XZImageCacheManager * _Nonnull defaultManager;)
 + (XZImageCacheManager * _Nonnull)defaultManager SWIFT_WARN_UNUSED_RESULT;
 - (NSString * _Nonnull)identifierForImageNamed:(NSString * _Nonnull)name type:(enum XZImageCacheType)type scale:(CGFloat)scale SWIFT_WARN_UNUSED_RESULT;
@@ -459,6 +592,10 @@ SWIFT_CLASS_NAMED("TitledImageView")
 @end
 
 
+
+
+
+
 @interface UIApplication (SWIFT_EXTENSION(XZKit))
 /// App 启动图，屏幕当前方向的启动图。
 /// <ul>
@@ -468,6 +605,8 @@ SWIFT_CLASS_NAMED("TitledImageView")
 /// </ul>
 @property (nonatomic, readonly, strong) UIImage * _Nullable xz_launchImage;
 @end
+
+
 
 
 @interface UIImageView (SWIFT_EXTENSION(XZKit))
@@ -483,7 +622,7 @@ SWIFT_CLASS_NAMED("TitledImageView")
 /// note:
 /// 占位图视图在首次加载时会同步当前 UIImageView 的 backgroundColor、contentMode、alpha、isHighlighted 的属性值。
 /// note:
-/// 占位图视图会在显示时，尝试将其自己放在底部。
+/// 占位图视图添加到视图上时，将自己放在当前视图子视图的底部。
 @property (nonatomic, readonly, strong) UIImageView * _Nonnull xz_placeholderImageView;
 /// 获取已创建的占位图视图。
 @property (nonatomic, readonly, strong) UIImageView * _Nullable xz_placeholderImageViewIfLoaded;
@@ -642,7 +781,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull xz_u
 /// UIView 亮度遮罩。
 SWIFT_CLASS("_TtC5XZKit20XZViewBrightnessView")
 @interface XZViewBrightnessView : UIView
-- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @property (nonatomic, strong) UIColor * _Nullable backgroundColor;
 @property (nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;

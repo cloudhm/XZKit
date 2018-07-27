@@ -56,4 +56,7 @@ NS_SWIFT_NAME(ImageCarouselView) @interface XZImageCarouselView : XZCarouselView
 /// XZImageCarouselView 优先显示代理创建的视图。如果没有代理或代理返回了 nil，则自动创建 UIImageView 来作为图片的展示视图。
 - (nullable UIView *)viewForItemView:(nonnull XZCarouselViewItemView *)itemView atIndex:(NSInteger)index reusingView:(nullable UIView *)view;
 
+/// 网络图片加载完成后的执行的操作，用于执行从占位图到实际图片的动画。
+- (void)itemView:(nonnull XZCarouselViewItemView *)itemView didLoadImageForImageView:(nonnull UIImageView *)imageView atIndex:(NSInteger)index imageSize:(CGSize)imageSize animated:(BOOL)animated;
+
 @end

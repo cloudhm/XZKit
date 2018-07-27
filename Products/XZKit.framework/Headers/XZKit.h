@@ -8,21 +8,54 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef COCOAPODS
+
 //! Project version number for XZKit.
 FOUNDATION_EXPORT double XZKitVersionNumber;
 
 //! Project version string for XZKit.
 FOUNDATION_EXPORT const unsigned char XZKitVersionString[];
 
-// MARK: - 类目
 
-#import <XZKit/NSString+XZKit.h>
-#import <XZKit/NSData+XZKit.h>
-#import <XZKit/UIViewController+XZKit.h>
-#import <XZKit/UIImage+XZKit.h>
-#import <XZKit/UIColor+XZKit.h>
-#import <XZKit/NSBundle+XZKit.h>
+// MARK: Constant
 #import <XZKit/ObjectiveC.h>
+
+
+// MARK: - Category
+#import <XZKit/NSString.h>
+#import <XZKit/NSData.h>
+#import <XZKit/NSBundle.h>
+#import <XZKit/UIImage.h>
+#import <XZKit/UIColor.h>
+#import <XZKit/UIViewController.h>
+
+
+// MARK: - XZAppLanguage
+#import <XZKit/NSBundle+AppLanguage.h>
+
+
+// MARK: - XZAppRedirection
+#import <XZKit/XZAppRedirection.h>
+
+
+// MARK: - XZCacheManager
+#import <XZKit/UIImage+CacheManager.h>
+
+
+// MARK: - XZDataDigester
+#import <XZKit/XZDataDigester.h>
+#import <XZKit/NSString+DataDigester.h>
+
+
+// MARK: - XZDataCryptor
+#import <XZKit/XZDataCryptor.h>
+
+
+// MARK: - XZCarouselView
+#import <XZKit/XZCarouselView.h>
+#import <XZKit/XZCarouselViewItemView.h>
+#import <XZKit/XZImageCarouselView.h>
+
 
 // MARK: - XZTheme
 
@@ -45,29 +78,4 @@ FOUNDATION_EXPORT const unsigned char XZKitVersionString[];
 //#import <XZKit/XZThemeStyle+UITabBar.h>
 //#import <XZKit/XZThemeStyle+UIImageView.h>
 
-// MARK: - XZCacheManager
-
-// #import <XZKit/XZCacheManager.h>
-
-
-// MARK: - XZAppRedirection
-#import <XZKit/XZAppRedirection.h>
-
-// MARK: - XZDataDigester
-
-#import <XZKit/XZDataDigester.h>
-
-// MARK: - XZDataCryptor
-
-#import <XZKit/XZDataCryptor.h>
-
-// MARK: - XZCarouselView
-
-#import <XZKit/XZCarouselView.h>
-#import <XZKit/XZCarouselViewItemView.h>
-#import <XZKit/XZImageCarouselView.h>
-
-
-// MARK: - XZWebView
-
-// #import <XZKit/XZWebView.h>
+#endif

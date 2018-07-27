@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <XZKit/ObjectiveC.h>
 /*
  设计思路：当一个重定向任务发送给根控制器之后，这个任务就会像响应者链一样向下传递，直至目的页面。
  因为每个控制都知道自己可以到达的“下级控制器”，那么就从根控制器开始发送重定向任务，由控制器决定重定向任务要转发的下级控制器。
@@ -59,7 +59,7 @@
 
 
 /// App重定向对象，单次重定向信息共享一个对象。
-NS_SWIFT_NAME(AppRedirection) @interface XZAppRedirection: NSObject
+NS_SWIFT_NAME(AppRedirection) XZ_SUBCLASSING_RESTRICTED @interface XZAppRedirection: NSObject
 
 /// 当前重定向值，重定向到达指定的控制器时，此属性可能不同。
 @property (nonatomic, readonly, nonnull) id currentValue;
@@ -67,6 +67,7 @@ NS_SWIFT_NAME(AppRedirection) @interface XZAppRedirection: NSObject
 /// 所有重定向值。
 @property (nonatomic, readonly, copy, nonnull) NSArray *values;
 
+/// 禁止继承，没有初始化方法。
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
 /// 构造一个重定向对象。
