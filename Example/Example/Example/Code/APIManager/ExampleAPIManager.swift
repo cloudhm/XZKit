@@ -41,8 +41,33 @@ extension APINetworking {
         
         switch apiRequest.method {
         case .GET:
+            #if DEBUG
+            var url = apiRequest.url;
+            if let dict = apiRequest.data as? [String: Any] {
+                url.addQueryItems(from: dict)
+            }
+            let headers = manager.requestSerializer.httpRequestHeaders.map({ (itemClick) -> String in
+                return "\(itemClick.key): \(itemClick.value)"
+            }).joined(separator: "\n   ")
+            XZLog("Method:  GET\nURL:     %@\nHeaders: %@", url.absoluteString, headers)
+            #endif
             return manager.get(urlString, parameters: data, progress: progressHandler, success: successHandler, failure: failureHandler)
         case .POST:
+            #if DEBUG
+            let headers = manager.requestSerializer.httpRequestHeaders.map({ (itemClick) -> String in
+                return "\(itemClick.key): \(itemClick.value)"
+            }).joined(separator: "\n   ")
+            let dataString = (apiRequest.data as? [String: Any])?.map({ (itemClick) -> String in
+                if let json = String.init(json: itemClick.value) {
+                    return "\(itemClick.key): \(json.replacingOccurrences(of: "\\n", with: ""))"
+                }
+                return "\(itemClick.key): <非 JSON 数据类型>"
+            }).joined(separator: "\n   ")
+            let fileString = apiRequest.attachments?.map({ (item) -> String in
+                return "\(item.key): \(item.value)"
+            }).joined(separator: "\n   ")
+            XZLog("Method:  POST\nURL:     %@\nHeaders: %@\nData:    %@\nFile:    %@", urlString, headers, dataString, fileString)
+            #endif
             if let attachments = apiRequest.attachments {
                 return manager.post(urlString, parameters: data, constructingBodyWith: { (formData) in
                     for attachment in attachments {

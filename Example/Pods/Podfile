@@ -7,7 +7,7 @@ target 'Example' do
   use_frameworks!
   
   pod "XZKit", :path => '../../'
-  # pod "XZKit/Networking"
+  # pod "SVProgressHUD"
   pod "AFNetworking"
 
 end

@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-#ifndef COCOAPODS
-
 //! Project version number for XZKit.
 FOUNDATION_EXPORT double XZKitVersionNumber;
 
 //! Project version string for XZKit.
 FOUNDATION_EXPORT const unsigned char XZKitVersionString[];
 
+
+#ifndef COCOAPODS
 
 // MARK: Constant
 #import <XZKit/ObjectiveC.h>
