@@ -1,0 +1,13 @@
+workspace 	"../Example.xcworkspace"
+project 	"../Example/Example.xcodeproj"
+platform 	:ios, '8.0'
+
+
+target 'Example' do
+  use_frameworks!
+  
+  pod "XZKit", :path => '../../'
+  # pod "XZKit/Networking"
+  pod "AFNetworking"
+
+end

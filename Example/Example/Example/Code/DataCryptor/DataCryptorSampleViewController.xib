@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DataCryptorSampleViewController" customModule="Example" customModuleProvider="target">
+            <connections>
+                <outlet property="algorithmSegmentedControl" destination="Hoj-5f-7NS" id="jyu-eK-nbl"/>
+                <outlet property="keyTextField" destination="cNw-wf-1ll" id="zNr-we-LoR"/>
+                <outlet property="modeSegmentedControl" destination="dnX-RW-k5K" id="HWu-d5-Ar0"/>
+                <outlet property="operationSegmentedControl" destination="Abi-8T-Rbf" id="RAC-wd-ofZ"/>
+                <outlet property="paddingSegmentedControl" destination="tRs-rp-wP3" id="CeP-ZE-m9l"/>
+                <outlet property="resultLabel" destination="LhF-PA-xJk" id="xyy-J6-uo2"/>
+                <outlet property="resultTypeSegmentedControl" destination="gAC-0J-TDD" id="7kO-Xx-ptM"/>
+                <outlet property="submitButton" destination="xNS-k5-4AD" id="IOS-iF-PqP"/>
+                <outlet property="textView" destination="u86-YV-pjZ" id="ge9-0Z-flV"/>
+                <outlet property="vectorTextField" destination="Ob7-js-oPH" id="UWe-uT-r0y"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="4Cc-6O-zIo">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8oO-di-PXj">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="685"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="XZKit" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="u86-YV-pjZ">
+                                    <rect key="frame" x="8" y="46" width="359" height="100"/>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="v8O-hi-5z6"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入待加/解密的内容：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzo-rD-75w">
+                                    <rect key="frame" x="8" y="18" width="173.5" height="18"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入密钥：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Se-yz-irj">
+                                    <rect key="frame" x="8" y="310" width="92" height="18"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入初始化向量/可调整值：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grg-2u-6y3">
+                                    <rect key="frame" x="8" y="388" width="204" height="18"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Abi-8T-Rbf">
+                                    <rect key="frame" x="8" y="166" width="120" height="29"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="120" id="4Vo-gX-Ha8"/>
+                                    </constraints>
+                                    <segments>
+                                        <segment title="加密"/>
+                                        <segment title="解密"/>
+                                    </segments>
+                                </segmentedControl>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tRs-rp-wP3">
+                                    <rect key="frame" x="176" y="166" width="191" height="29"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <segments>
+                                        <segment title="PKCS7Padding"/>
+                                        <segment title="No Padding"/>
+                                    </segments>
+                                </segmentedControl>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hoj-5f-7NS">
+                                    <rect key="frame" x="8" y="214" width="359" height="29"/>
+                                    <segments>
+                                        <segment title="AES"/>
+                                        <segment title="DES"/>
+                                        <segment title="3DES"/>
+                                        <segment title="CAST"/>
+                                        <segment title="RC2"/>
+                                        <segment title="RC4"/>
+                                        <segment title="Blowfish"/>
+                                    </segments>
+                                </segmentedControl>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="dnX-RW-k5K">
+                                    <rect key="frame" x="8" y="262" width="359" height="29"/>
+                                    <segments>
+                                        <segment title="ECB"/>
+                                        <segment title="CBC"/>
+                                        <segment title="CFB"/>
+                                        <segment title="CTR"/>
+                                        <segment title="F8" enabled="NO"/>
+                                        <segment title="LRW" enabled="NO"/>
+                                        <segment title="OFB"/>
+                                        <segment title="XTS"/>
+                                        <segment title="RC4"/>
+                                        <segment title="CFB8"/>
+                                    </segments>
+                                </segmentedControl>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="XZKit" borderStyle="line" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cNw-wf-1ll">
+                                    <rect key="frame" x="8" y="338" width="359" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="FuT-1j-iqx"/>
+                                    </constraints>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="XZKit" borderStyle="line" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ob7-js-oPH">
+                                    <rect key="frame" x="8" y="416" width="359" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="h9d-jb-VtD"/>
+                                    </constraints>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNS-k5-4AD">
+                                    <rect key="frame" x="8" y="514" width="80" height="30"/>
+                                    <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="082-nQ-UWH"/>
+                                        <constraint firstAttribute="width" constant="80" id="0sT-nJ-sO2"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="确认"/>
+                                    <connections>
+                                        <action selector="submitButtonAction:" destination="-1" eventType="touchUpInside" id="rcS-hY-4Xe"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加密或解密结果将显示在这里" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhF-PA-xJk">
+                                    <rect key="frame" x="8" y="564" width="359" height="21"/>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gAC-0J-TDD">
+                                    <rect key="frame" x="8" y="466" width="120" height="29"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="120" id="35P-4J-xr9"/>
+                                    </constraints>
+                                    <segments>
+                                        <segment title="十六进制"/>
+                                        <segment title="Base64"/>
+                                    </segments>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="gAC-0J-TDD" firstAttribute="top" secondItem="Ob7-js-oPH" secondAttribute="bottom" constant="20" id="0id-7q-CKb"/>
+                                <constraint firstItem="6Se-yz-irj" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="2iz-9p-cEN"/>
+                                <constraint firstItem="gAC-0J-TDD" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="2q3-uk-GtE"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="Hoj-5f-7NS" secondAttribute="trailing" id="3Lj-y0-sf7"/>
+                                <constraint firstItem="Ob7-js-oPH" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="4hb-3O-Clo"/>
+                                <constraint firstItem="Abi-8T-Rbf" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="53N-j0-g56"/>
+                                <constraint firstItem="Ob7-js-oPH" firstAttribute="trailing" secondItem="8oO-di-PXj" secondAttribute="trailingMargin" id="8uw-1T-vfX"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="tRs-rp-wP3" secondAttribute="trailing" id="Ek9-sJ-7RG"/>
+                                <constraint firstItem="dnX-RW-k5K" firstAttribute="top" secondItem="Hoj-5f-7NS" secondAttribute="bottom" constant="20" id="IMV-go-b7t"/>
+                                <constraint firstItem="dnX-RW-k5K" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="LQn-Yn-ld9"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="cNw-wf-1ll" secondAttribute="trailing" id="MPd-4C-P4M"/>
+                                <constraint firstItem="vzo-rD-75w" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="NKK-xE-X5h"/>
+                                <constraint firstItem="Grg-2u-6y3" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="S0C-ON-zJV"/>
+                                <constraint firstItem="Hoj-5f-7NS" firstAttribute="top" secondItem="Abi-8T-Rbf" secondAttribute="bottom" constant="20" id="U8k-dX-RN8"/>
+                                <constraint firstAttribute="bottom" secondItem="LhF-PA-xJk" secondAttribute="bottom" constant="100" id="WEG-3f-eEp"/>
+                                <constraint firstItem="xNS-k5-4AD" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="Ymy-Ge-m1d"/>
+                                <constraint firstItem="Grg-2u-6y3" firstAttribute="top" secondItem="cNw-wf-1ll" secondAttribute="bottom" constant="20" id="aFb-mc-6h1"/>
+                                <constraint firstItem="cNw-wf-1ll" firstAttribute="top" secondItem="6Se-yz-irj" secondAttribute="bottom" constant="10" id="c5u-bc-KWQ"/>
+                                <constraint firstItem="Hoj-5f-7NS" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="cgS-F5-fwt"/>
+                                <constraint firstItem="cNw-wf-1ll" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="dlj-TL-ntR"/>
+                                <constraint firstItem="u86-YV-pjZ" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="ewh-XD-nEl"/>
+                                <constraint firstItem="Ob7-js-oPH" firstAttribute="top" secondItem="Grg-2u-6y3" secondAttribute="bottom" constant="10" id="iWe-3F-mO0"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="dnX-RW-k5K" secondAttribute="trailing" id="ipf-7M-P4G"/>
+                                <constraint firstItem="tRs-rp-wP3" firstAttribute="top" secondItem="u86-YV-pjZ" secondAttribute="bottom" constant="20" id="jn3-JZ-PlR"/>
+                                <constraint firstItem="xNS-k5-4AD" firstAttribute="top" secondItem="gAC-0J-TDD" secondAttribute="bottom" constant="20" id="lNE-lG-25o"/>
+                                <constraint firstItem="LhF-PA-xJk" firstAttribute="top" secondItem="xNS-k5-4AD" secondAttribute="bottom" constant="20" id="n4X-xB-V7L"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="LhF-PA-xJk" secondAttribute="trailing" id="nFU-CF-aZ5"/>
+                                <constraint firstItem="LhF-PA-xJk" firstAttribute="leading" secondItem="8oO-di-PXj" secondAttribute="leadingMargin" id="nwL-UO-uJy"/>
+                                <constraint firstItem="vzo-rD-75w" firstAttribute="top" secondItem="8oO-di-PXj" secondAttribute="topMargin" constant="10" id="p1I-qu-997"/>
+                                <constraint firstItem="Abi-8T-Rbf" firstAttribute="top" secondItem="u86-YV-pjZ" secondAttribute="bottom" constant="20" id="q0m-wR-kzR"/>
+                                <constraint firstItem="6Se-yz-irj" firstAttribute="top" secondItem="dnX-RW-k5K" secondAttribute="bottom" constant="20" id="rd1-zY-KDe"/>
+                                <constraint firstItem="u86-YV-pjZ" firstAttribute="top" secondItem="vzo-rD-75w" secondAttribute="bottom" constant="10" id="tgo-dn-ndr"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="u86-YV-pjZ" secondAttribute="trailing" id="uxX-da-gQ6"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="8oO-di-PXj" firstAttribute="top" secondItem="4Cc-6O-zIo" secondAttribute="top" id="5e5-aC-ZKB"/>
+                        <constraint firstItem="8oO-di-PXj" firstAttribute="leading" secondItem="4Cc-6O-zIo" secondAttribute="leading" id="Zfk-7u-FeZ"/>
+                        <constraint firstItem="8oO-di-PXj" firstAttribute="width" secondItem="4Cc-6O-zIo" secondAttribute="width" id="mjW-9R-cgR"/>
+                        <constraint firstAttribute="bottom" secondItem="8oO-di-PXj" secondAttribute="bottom" id="uer-2L-UO8"/>
+                        <constraint firstAttribute="trailing" secondItem="8oO-di-PXj" secondAttribute="trailing" id="yKj-h3-0CI"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="4Cc-6O-zIo" secondAttribute="trailing" id="GyK-7c-Xxb"/>
+                <constraint firstItem="4Cc-6O-zIo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TYI-Qs-5qd"/>
+                <constraint firstItem="4Cc-6O-zIo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="smU-j5-qsY"/>
+                <constraint firstAttribute="bottom" secondItem="4Cc-6O-zIo" secondAttribute="bottom" id="yPW-6D-PSU"/>
+            </constraints>
+            <point key="canvasLocation" x="-221.5" y="-223.5"/>
+        </view>
+    </objects>
+</document>
