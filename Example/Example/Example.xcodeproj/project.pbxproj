@@ -543,7 +543,7 @@
 			inputPaths = (
 				"${SRCROOT}/../Pods/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/XZKit/XZKit.framework",
+				"${PODS_ROOT}/../../../Products/XZKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
