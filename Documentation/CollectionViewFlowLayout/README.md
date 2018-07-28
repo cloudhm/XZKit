@@ -16,11 +16,9 @@ pod "XZKit/CollectionViewFlowLayout"
 ## 效果
 
 <div style="background: url(../XZKit.png); width: 320px; height: 570px;">
-    <video src="https://youtu.be/RpjKRLTrmD8" poster="../XZKit.png" width="320" height="570" controls preload>
+    <video src="./CollectionViewFlowLayout.mp4" poster="../XZKit.png" width="320" height="570" controls preload>
     </video>
 <div>
-
-[![CollectionViewFlowLayout](../XZKit.png)](https://youtu.be/RpjKRLTrmD8)
 
 
 ## 示例
