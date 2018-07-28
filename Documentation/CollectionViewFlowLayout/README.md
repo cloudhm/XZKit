@@ -15,10 +15,14 @@ pod "XZKit/CollectionViewFlowLayout"
 
 ## 效果
 
-<video src="./CollectionViewFlowLayout.mp4" poster="../XZKit.png" width="320" height="570" controls preload>
-    <p>不支持 video 标签</p>
-</video>
+<div style="background: url(../XZKit.png); width: 320px; height: 570px;">
+    <video src="https://youtu.be/RpjKRLTrmD8" poster="../XZKit.png" width="320" height="570" controls preload>
+    </video>
+<div>
+
 [![CollectionViewFlowLayout](../XZKit.png)](https://youtu.be/RpjKRLTrmD8)
+
+
 ## 示例
 
 与 [UICollectionViewFlowLayout](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout) 完全相同的用法，只是额外增加了两个属性来设置对齐方式。
