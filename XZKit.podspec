@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 	
 	s.name             = 'XZKit'
-	s.version          = '3.0.2'
+	s.version          = '3.0.3'
 	s.summary          = '一款封装了 iOS App 开发过程中常用的功能和组件的框架!'
 
 	# This description is used to generate tags and improve search results.
