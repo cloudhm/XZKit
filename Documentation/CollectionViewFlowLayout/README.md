@@ -3,7 +3,7 @@
 ## 安装
 
 ```ruby
-pod "XZKit/CollectionViewFlowLayout"
+pod "XZKit"
 ```
 
 ## 特性
