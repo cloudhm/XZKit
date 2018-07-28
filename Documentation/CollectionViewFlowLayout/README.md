@@ -15,9 +15,7 @@ pod "XZKit/CollectionViewFlowLayout"
 
 ## 效果
 
-<video  style="display:block; width:100%; height:auto;" autoplay controls loop="loop">
-    <source src="./CollectionViewFlowLayout.mp4" type="video/mp4" />
-</video>
+<video src="./CollectionViewFlowLayout.mp4" poster="../XZKit.png" width="320" height="570" controls preload></video>
 
 ## 示例
 
