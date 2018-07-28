@@ -15,7 +15,7 @@ pod "XZKit/CollectionViewFlowLayout"
 
 ## 效果
 
-<video src="./CollectionViewFlowLayout.mp4" poster="../XZKit.png" width="320" height="570" controls preload></video>
+<video src="CollectionViewFlowLayout.mp4" poster="../XZKit.png" width="320" height="570" controls preload></video>
 
 ## 示例
 
