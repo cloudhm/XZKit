@@ -27,6 +27,8 @@ class SampleCarouselViewController: UIViewController, CarouselViewDelegate {
         
         self.hidesBottomBarWhenPushed = true;
         
+        self.navigationBar.title = "CarouselView"
+        
         automaticallyAdjustsScrollViewInsets = false;
         view.backgroundColor = UIColor.white
         

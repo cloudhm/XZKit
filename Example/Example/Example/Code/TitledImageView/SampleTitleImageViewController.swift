@@ -16,6 +16,8 @@ class SampleTitleImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationBar.title = "TitledImageView"
+        
         titledImageView.image = UIImage(named: "imgFreeGifts", blending: .blue)
         titledImageView.title = "用户中心"
         titledImageView.titleEdgeInsets = UIEdgeInsets.init(top: 5, left: 0, bottom: -5, right: 0)

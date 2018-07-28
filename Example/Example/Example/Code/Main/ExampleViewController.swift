@@ -99,9 +99,11 @@ class ExampleViewController: UITableViewController {
             self.navigationController?.pushViewController(nextVC, animated: true)
         case .mImageCarouselView:
             let nextVC = SampleImageCarouselViewController.init(nibName: nil, bundle: nil)
+            nextVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(nextVC, animated: true)
         case .mDataCryptor:
             let nextVC = DataCryptorSampleViewController.init()
+            nextVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(nextVC, animated: true)
             
         case .mTitledImageView:

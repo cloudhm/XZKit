@@ -36,6 +36,7 @@ class ColorTestCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationBar.title = "UIColor"
         let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 40) / 3, height: 100);
         

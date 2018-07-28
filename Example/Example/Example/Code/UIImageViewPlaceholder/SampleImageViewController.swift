@@ -15,7 +15,7 @@ class SampleImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.navigationBar.title = "placeholder"
     }
     
     override func didReceiveMemoryWarning() {

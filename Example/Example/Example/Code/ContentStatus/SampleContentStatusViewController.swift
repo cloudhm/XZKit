@@ -27,7 +27,17 @@ class SampleContentStatusViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = SampleContentStatusView.init(frame: UIScreen.main.bounds)
+        let view = SampleContentStatusView.init(frame: UIScreen.main.bounds)
+        
+        view.setTitle("Content is empty now", forContentStatus: .empty)
+        view.setImage(UIImage(named: "ImageEmpty"), forContentStatus: .empty)
+        
+        view.setTitle("Content is loading now", forContentStatus: .loading)
+        view.setImage(UIImage(named: "ImageLoading"), forContentStatus: .loading)
+        
+        view.contentStatus = .loading
+        
+        self.view = view
     }
     
     var contentView: SampleContentStatusView {
@@ -36,6 +46,8 @@ class SampleContentStatusViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationBar.title = "ContentStatusRepresentable"
         
         self.contentView.backgroundColor = UIColor.white
         

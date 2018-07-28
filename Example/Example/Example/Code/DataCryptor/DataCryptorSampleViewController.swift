@@ -24,23 +24,14 @@ class DataCryptorSampleViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var resultTypeSegmentedControl: UISegmentedControl!
     
-    
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        self.hidesBottomBarWhenPushed = true
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func canReadData(_ data: inout Data?) -> Bool {
         return false
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationBar.title = "DataCryptor"
     }
 
     @IBAction func submitButtonAction(_ sender: UIButton) {

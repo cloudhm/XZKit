@@ -28,6 +28,8 @@ class ImageTestViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationBar.title = "UIImage"
     }
 
     override func didReceiveMemoryWarning() {

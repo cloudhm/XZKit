@@ -26,7 +26,8 @@ class SampleThemeViewController: UIViewController {
         super.viewDidLoad()
     
         themeSegmentControl.frame = CGRect.init(x: 0, y: 0, width: 160, height: 30)
-        self.navigationItem.titleView = themeSegmentControl
+        self.navigationBar.titleView = themeSegmentControl
+        self.navigationBar.backButton!.setTitle("返回", for: .normal)
         
         themeSegmentControl.addTarget(self, action: #selector(themeSegmentControlValueChanged(_:)), for: .valueChanged)
 

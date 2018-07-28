@@ -11,7 +11,7 @@ import XZKit
 
 private let reuseIdentifier = "Cell"
 
-class FlowLayoutCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class FlowLayoutCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CollectionViewDelegateFlowLayout {
     
     init() {
         super.init(collectionViewLayout: CollectionViewFlowLayout.init())
@@ -152,6 +152,20 @@ class FlowLayoutCollectionViewController: UICollectionViewController, UICollecti
         case .vertical:
             return CGSize.init(width: collectionView.bounds.width, height: 30)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, lineAlignmentForSectionAt section: Int, forLine line: Int) -> CollectionViewFlowLayout.LineAlignment {
+        if line % 2 == 0 {
+            return .trailing
+        }
+        return .leading
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, interitemAlignmentForSectionAt section: Int, forItemInLineAt indexPath: IndexPath) -> CollectionViewFlowLayout.InteritemAlignment {
+        if indexPath.line % 2 == 0 {
+            return .top
+        }
+        return .bottom
     }
 
 }

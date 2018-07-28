@@ -16,6 +16,8 @@ class SampleImageCarouselViewController: UIViewController, ImageCarouselViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationBar.title = "ImageCarouselView"
+        
         automaticallyAdjustsScrollViewInsets = false;
         view.backgroundColor = UIColor.white
         
