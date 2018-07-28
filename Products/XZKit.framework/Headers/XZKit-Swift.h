@@ -235,6 +235,8 @@ SWIFT_PROTOCOL_NAMED("CollectionViewDelegateFlowLayout")
 /// 行对齐方式。
 - (enum XZCollectionViewFlowLayoutLineAlignment)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout lineAlignmentForSectionAt:(NSInteger)section forLine:(NSInteger)line SWIFT_WARN_UNUSED_RESULT;
 /// 获取指定元素对的对齐方式。
+/// important:
+/// 第四个参数 indexPath 不是 Cell 在 UICollectionView 中的位置，而是其所在 line 中的位置和 line 的位置。
 /// \param collectionView The UICollectionView.
 ///
 /// \param collectionViewLayout The CollectionViewFlowLayout.
@@ -321,25 +323,36 @@ typedef SWIFT_ENUM_NAMED(NSInteger, XZCollectionViewFlowLayoutInteritemAlignment
   XZCollectionViewFlowLayoutInteritemAlignmentDescender = 2,
 };
 
-@class UICollectionViewLayoutAttributes;
 
-@interface XZCollectionViewFlowLayout (SWIFT_EXTENSION(XZKit))
-/// 准备指定 Section 的 Header 布局信息。
-- (UICollectionViewLayoutAttributes * _Nullable)prepareVertical:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
-/// 准备指定 Section 的 Footer 布局信息。
-- (UICollectionViewLayoutAttributes * _Nullable)prepareVertical:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
-/// 可以通过自定义子嘞。
-- (enum XZCollectionViewFlowLayoutLineAlignment)collectionView:(UICollectionView * _Nonnull)collectionView lineAlignmentForSectionAt:(NSInteger)section forLine:(NSInteger)line delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate SWIFT_WARN_UNUSED_RESULT;
-- (enum XZCollectionViewFlowLayoutInteritemAlignment)collectionView:(UICollectionView * _Nonnull)collectionView interitemAlignmentForSectionAt:(NSInteger)section forItemInLineAt:(NSIndexPath * _Nonnull)indexPath delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate SWIFT_WARN_UNUSED_RESULT;
-/// 准备指定 Section 的 Cell 布局信息。
-- (NSArray<UICollectionViewLayoutAttributes *> * _Nonnull)prepareVertical:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
-- (UICollectionViewLayoutAttributes * _Nullable)prepareHorizontal:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
-- (UICollectionViewLayoutAttributes * _Nullable)prepareHorizontal:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
-- (NSArray<UICollectionViewLayoutAttributes *> * _Nonnull)prepareHorizontal:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+/// 自定义的布局信息，记录了 Cell 所在行的信息。
+SWIFT_CLASS_NAMED("Attributes")
+@interface XZCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes
+/// Cell 所在的行，默认值为 0 。
+@property (nonatomic) NSInteger line;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
 @interface XZCollectionViewFlowLayout (SWIFT_EXTENSION(XZKit))
+/// 准备指定 Section 的 Header 布局信息。
+- (XZCollectionViewLayoutAttributes * _Nullable)prepareVertical:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+/// 准备指定 Section 的 Footer 布局信息。
+- (XZCollectionViewLayoutAttributes * _Nullable)prepareVertical:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+/// 获取行对齐方式。
+- (enum XZCollectionViewFlowLayoutLineAlignment)collectionView:(UICollectionView * _Nonnull)collectionView lineAlignmentForSectionAt:(NSInteger)section forLine:(NSInteger)line delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate SWIFT_WARN_UNUSED_RESULT;
+/// 获取元素对齐方式。
+- (enum XZCollectionViewFlowLayoutInteritemAlignment)collectionView:(UICollectionView * _Nonnull)collectionView interitemAlignmentForSectionAt:(NSInteger)section forItemInLineAt:(NSIndexPath * _Nonnull)indexPath delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate SWIFT_WARN_UNUSED_RESULT;
+/// 准备指定 Section 的 Cell 布局信息。
+- (NSArray<XZCollectionViewLayoutAttributes *> * _Nonnull)prepareVertical:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (XZCollectionViewLayoutAttributes * _Nullable)prepareHorizontal:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (XZCollectionViewLayoutAttributes * _Nullable)prepareHorizontal:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (NSArray<XZCollectionViewLayoutAttributes *> * _Nonnull)prepareHorizontal:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+@interface XZCollectionViewFlowLayout (SWIFT_EXTENSION(XZKit))
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) Class _Nonnull layoutAttributesClass;)
++ (Class _Nonnull)layoutAttributesClass SWIFT_WARN_UNUSED_RESULT;
 @property (nonatomic, readonly) CGSize collectionViewContentSize;
 - (void)invalidateLayout;
 /// 当 UICollectionView 的宽度改变时，需重新计算布局。
