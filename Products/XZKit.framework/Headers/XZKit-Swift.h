@@ -213,36 +213,40 @@ SWIFT_CLASS_NAMED("CacheManager")
 
 
 @class UICollectionView;
-@class XZCollectionViewFlowLayout;
+@class UICollectionViewLayout;
 enum XZCollectionViewFlowLayoutLineAlignment : NSInteger;
 enum XZCollectionViewFlowLayoutInteritemAlignment : NSInteger;
 
-/// CollectionViewFlowLayout 的代理协议，用于自定义每个 Section 的对齐方式。
+/// CollectionViewFlowLayout 的代理协议。
 SWIFT_PROTOCOL_NAMED("CollectionViewDelegateFlowLayout")
 @protocol XZCollectionViewDelegateFlowLayout <UICollectionViewDelegateFlowLayout>
 @optional
-/// 获取指定 Section 的行对齐方式。
+/// 获取指定行的对齐方式。
 /// \param collectionView The UICollectionView.
 ///
 /// \param collectionViewLayout The CollectionViewFlowLayout.
 ///
 /// \param section 指定的 Section 。
+///
+/// \param line line 在 section 中的索引。
 ///
 ///
 /// returns:
 /// 行对齐方式。
-- (enum XZCollectionViewFlowLayoutLineAlignment)collectionView:(UICollectionView * _Nonnull)collectionView layout:(XZCollectionViewFlowLayout * _Nonnull)collectionViewLayout lineAlignmentForSectionAt:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
-/// 获取指定 Section 的元素对齐方式。
+- (enum XZCollectionViewFlowLayoutLineAlignment)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout lineAlignmentForSectionAt:(NSInteger)section forLine:(NSInteger)line SWIFT_WARN_UNUSED_RESULT;
+/// 获取指定元素对的对齐方式。
 /// \param collectionView The UICollectionView.
 ///
 /// \param collectionViewLayout The CollectionViewFlowLayout.
 ///
 /// \param section 指定的 Section 。
 ///
+/// \param indexPath inexPath.item 表示元素在 line 中的索引，inexPath.line 表示 line 在 section 中的索引。
+///
 ///
 /// returns:
 /// 元素对齐方式。
-- (enum XZCollectionViewFlowLayoutInteritemAlignment)collectionView:(UICollectionView * _Nonnull)collectionView layout:(XZCollectionViewFlowLayout * _Nonnull)collectionViewLayout interitemAlignmentForSectionAt:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (enum XZCollectionViewFlowLayoutInteritemAlignment)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout interitemAlignmentForSectionAt:(NSInteger)section forItemInLineAt:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
@@ -255,7 +259,7 @@ SWIFT_PROTOCOL_NAMED("CollectionViewDelegateFlowLayout")
 /// 对于 zIndex 进行了特殊处理，排序越后的视图 zIndex 越大；Header/Footer 的 zIndex 比 Cell 的大。
 SWIFT_CLASS_NAMED("CollectionViewFlowLayout")
 @interface XZCollectionViewFlowLayout : UICollectionViewLayout
-/// 滚动方向。
+/// 滚动方向。默认 .vertical 。
 @property (nonatomic) UICollectionViewScrollDirection scrollDirection;
 /// 行间距。滚动方向为垂直时，水平方向为一行；滚动方向为水平时，垂直方向为一行。默认 0 ，代理方法的返回值优先。
 @property (nonatomic) CGFloat minimumLineSpacing;
@@ -317,9 +321,23 @@ typedef SWIFT_ENUM_NAMED(NSInteger, XZCollectionViewFlowLayoutInteritemAlignment
   XZCollectionViewFlowLayoutInteritemAlignmentDescender = 2,
 };
 
-
-
 @class UICollectionViewLayoutAttributes;
+
+@interface XZCollectionViewFlowLayout (SWIFT_EXTENSION(XZKit))
+/// 准备指定 Section 的 Header 布局信息。
+- (UICollectionViewLayoutAttributes * _Nullable)prepareVertical:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+/// 准备指定 Section 的 Footer 布局信息。
+- (UICollectionViewLayoutAttributes * _Nullable)prepareVertical:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+/// 可以通过自定义子嘞。
+- (enum XZCollectionViewFlowLayoutLineAlignment)collectionView:(UICollectionView * _Nonnull)collectionView lineAlignmentForSectionAt:(NSInteger)section forLine:(NSInteger)line delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate SWIFT_WARN_UNUSED_RESULT;
+- (enum XZCollectionViewFlowLayoutInteritemAlignment)collectionView:(UICollectionView * _Nonnull)collectionView interitemAlignmentForSectionAt:(NSInteger)section forItemInLineAt:(NSIndexPath * _Nonnull)indexPath delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate SWIFT_WARN_UNUSED_RESULT;
+/// 准备指定 Section 的 Cell 布局信息。
+- (NSArray<UICollectionViewLayoutAttributes *> * _Nonnull)prepareVertical:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UICollectionViewLayoutAttributes * _Nullable)prepareHorizontal:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UICollectionViewLayoutAttributes * _Nullable)prepareHorizontal:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (NSArray<UICollectionViewLayoutAttributes *> * _Nonnull)prepareHorizontal:(UICollectionView * _Nonnull)collectionView delegate:(id <UICollectionViewDelegateFlowLayout> _Nullable)delegate layoutAttributesForItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+@end
+
 
 @interface XZCollectionViewFlowLayout (SWIFT_EXTENSION(XZKit))
 @property (nonatomic, readonly) CGSize collectionViewContentSize;
@@ -448,6 +466,20 @@ SWIFT_CLASS_NAMED("InteractiveManager")
 - (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer * _Nonnull)otherGestureRecognizer SWIFT_WARN_UNUSED_RESULT;
 /// 导航驱动手势被识别时，其它手势是否需要导航驱动手势失败才能进行。
 - (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer * _Nonnull)otherGestureRecognizer SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+@interface NSIndexPath (SWIFT_EXTENSION(XZKit))
+/// The specific item’s line in collection view section.
+/// note:
+/// The NSIndexPath.item is the specific item’s index in the line.
+@property (nonatomic, readonly) NSInteger line;
+/// The specific item’s in collection view’s section line.
+/// \param item The index of item in line.
+///
+/// \param line The index of line in section.
+///
+- (nonnull instancetype)initWithItem:(NSInteger)item line:(NSInteger)line;
 @end
 
 

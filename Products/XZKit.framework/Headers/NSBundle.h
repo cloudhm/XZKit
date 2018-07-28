@@ -26,7 +26,7 @@
 @end
 
 
-NS_SWIFT_UNAVAILABLE("This class is for internal use.")
+NS_SWIFT_UNAVAILABLE("This class is for internal use only.")
 @interface XZBundle: NSBundle
 @end
 
