@@ -14,9 +14,11 @@ pod "XZKit/CollectionViewFlowLayout"
 - 支持 Objective-C 与 Swift 。
 
 ## 效果
-<div style="position:relative;height:0;padding-bottom:75.0%"><iframe src="https://www.youtube.com/embed/RpjKRLTrmD8?ecver=2" width="480" height="360" frameborder="0" allow="autoplay; encrypted-media" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
-<video src="./CollectionViewFlowLayout.mp4" poster="../XZKit.png" width="320" height="570" controls preload></video>
 
+<video src="./CollectionViewFlowLayout.mp4" poster="../XZKit.png" width="320" height="570" controls preload>
+    <p>不支持 video 标签</p>
+</video>
+[![CollectionViewFlowLayout](../XZKit.png)](https://youtu.be/RpjKRLTrmD8)
 ## 示例
 
 与 [UICollectionViewFlowLayout](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout) 完全相同的用法，只是额外增加了两个属性来设置对齐方式。
