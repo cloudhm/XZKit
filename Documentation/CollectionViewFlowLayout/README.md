@@ -15,7 +15,7 @@ pod "XZKit/CollectionViewFlowLayout"
 
 ## 效果
 
-<img src="./CollectionViewFlowLayout.gif" style="width: 240px;" alt="CollectionViewFlowLayout"></img>
+<img src="./CollectionViewFlowLayout.gif" width="240" height="427" alt="CollectionViewFlowLayout"></img>
 
 
 ## 示例
