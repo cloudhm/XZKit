@@ -14,7 +14,7 @@ pod "XZKit/CollectionViewFlowLayout"
 - 支持 Objective-C 与 Swift 。
 
 ## 效果
-
+<div style="position:relative;height:0;padding-bottom:75.0%"><iframe src="https://www.youtube.com/embed/RpjKRLTrmD8?ecver=2" width="480" height="360" frameborder="0" allow="autoplay; encrypted-media" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
 <video src="./CollectionViewFlowLayout.mp4" poster="../XZKit.png" width="320" height="570" controls preload></video>
 
 ## 示例
