@@ -15,7 +15,7 @@ pod "XZKit/CollectionViewFlowLayout"
 
 ## 效果
 
-![XZKit/CollectionViewFlowLayout](../CollectionViewFlowLayout.gif)
+![XZKit/CollectionViewFlowLayout](./CollectionViewFlowLayout.gif)
 
 
 ## 示例
