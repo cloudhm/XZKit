@@ -49,14 +49,14 @@ let collectionView = UICollectionView.init(frame: UIScreen.main.bounds, collecti
 通过 `CollectionViewDelegateFlowLayout` 协议，你甚至可以自定义每一个元素的对齐方式。
 
 ```swift
-func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, lineAlignmentForSectionAt section: Int, forLine line: Int) -> CollectionViewFlowLayout.LineAlignment {
+func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, lineAlignmentForSectionAt section: Int, forLine line: Int) -> CollectionViewFlowLayout.LineAlignment {
     if line % 2 == 0 {
         return .trailing
     }
     return .leading
 }
 
-func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, interitemAlignmentForSectionAt section: Int, forItemInLineAt indexPath: IndexPath) -> CollectionViewFlowLayout.InteritemAlignment {
+func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, interitemAlignmentForSectionAt section: Int, forItemInLineAt indexPath: IndexPath) -> CollectionViewFlowLayout.InteritemAlignment {
     if indexPath.line % 2 == 0 {
         return .top
     }
