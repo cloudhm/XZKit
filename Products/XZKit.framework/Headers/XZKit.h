@@ -17,7 +17,7 @@ FOUNDATION_EXPORT const unsigned char XZKitVersionString[];
 
 #ifndef COCOAPODS
 
-// MARK: Constant
+// MARK: - Constant
 #import <XZKit/ObjectiveC.h>
 
 
@@ -30,34 +30,34 @@ FOUNDATION_EXPORT const unsigned char XZKitVersionString[];
 #import <XZKit/UIViewController.h>
 
 
-// MARK: - XZAppLanguage
+// MARK: - AppLanguage
 #import <XZKit/NSBundle+AppLanguage.h>
 
 
-// MARK: - XZAppRedirection
+// MARK: - AppRedirection
 #import <XZKit/XZAppRedirection.h>
 
 
-// MARK: - XZCacheManager
+// MARK: - CacheManager
 #import <XZKit/UIImage+CacheManager.h>
 
 
-// MARK: - XZDataDigester
+// MARK: - DataDigester
 #import <XZKit/XZDataDigester.h>
 #import <XZKit/NSString+DataDigester.h>
 
 
-// MARK: - XZDataCryptor
+// MARK: - DataCryptor
 #import <XZKit/XZDataCryptor.h>
 
 
-// MARK: - XZCarouselView
+// MARK: - CarouselView
 #import <XZKit/XZCarouselView.h>
 #import <XZKit/XZCarouselViewItemView.h>
 #import <XZKit/XZImageCarouselView.h>
 
 
-// MARK: - XZTheme
+// MARK: - Theme
 
 //#import <XZKit/XZTheme.h>
 //#import <XZKit/XZThemeDefines.h>

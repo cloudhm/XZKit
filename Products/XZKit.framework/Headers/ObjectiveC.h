@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@import ObjectiveC;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,16 +44,23 @@ UIKIT_EXTERN NSString * const XZKitDomain NS_SWIFT_NAME(Domain);
 /// @endcode
 #define XZ_VARIABLE_OBSERVER(anObserver) __attribute__((cleanup(anObserver)))
 
-static inline void __defer__(void (^ _Nonnull * _Nonnull operation)(void)) NS_SWIFT_UNAVAILABLE("Use Swift.defer instead.") {
+/// defer 闭包的执行函数，请不要直接调用此函数。
+///
+/// @param operation 待执行的清理操作。
+FOUNDATION_STATIC_INLINE void __defer__(void (^ _Nonnull * _Nonnull operation)(void)) NS_SWIFT_UNAVAILABLE("Use Swift.defer instead.") {
     (*operation)();
 }
-/// 在当前作用域结束时一定执行的代码块。
+
+/// 定义当前作用域结束时需执行清理操作。
+/// - Note: 仅为 defer 宏提供自动补全的功能，并无实际用途。
 ///
 /// @param operation 待执行的代码块。
-static inline void defer(void (^ _Nonnull operation)(void)) NS_SWIFT_UNAVAILABLE("Use Swift.defer instead.") {
+FOUNDATION_STATIC_INLINE void defer(void (^ _Nonnull operation)(void)) NS_SWIFT_UNAVAILABLE("Use Swift.defer instead.") {
     operation();
 }
+
 #undef defer
+/// 定义当前作用域结束时需执行清理操作。
 #define defer(statements) void(^__defer)(void) __attribute__((cleanup(__defer__), unused)) = statements
 
 
@@ -116,6 +124,29 @@ FOUNDATION_EXTERN void XZLogv(const char * const filePath, int const line, const
 /// @param format 输出格式。
 /// @param ...    参数列表。
 #define XZLog(format, ...) XZLogv(__FILE__, (int)__LINE__, __func__, format, ##__VA_ARGS__)
+
+
+/// 遍历类实例对象的变量。
+///
+/// @param aClass 类。
+/// @param block 遍历所用的 block 。
+FOUNDATION_EXTERN void xz_objc_enumerateInstanceVariables(Class aClass, void (^block)(Ivar ivar)) NS_SWIFT_NAME(objc_enumerateInstanceVariables(_:_:));
+
+/// 获取类实例对象的变量名。
+///
+/// @param aClass 类。
+FOUNDATION_EXTERN NSArray<NSString *> * _Nullable xz_objc_getInstanceVariableNames(Class aClass) NS_SWIFT_NAME(objc_getInstanceVariableNames(_:));
+
+/// 遍历类实例对象的方法，不包括父类的方法。
+///
+/// @param aClass 类。
+/// @param block 遍历所用的 block 。
+FOUNDATION_EXTERN void xz_objc_enumerateInstanceMethods(Class aClass, void (^block)(Method method)) NS_SWIFT_NAME(objc_enumerateInstanceMethods(_:_:));
+
+/// 获取类实例对象的方法名。
+///
+/// @param aClass 类。
+FOUNDATION_EXTERN NSArray<NSString *> * _Nullable xz_objc_getInstanceMethodSelectors(Class aClass) NS_SWIFT_NAME(objc_getInstanceMethodSelectors(_:));
 
 
 NS_ASSUME_NONNULL_END
