@@ -20,6 +20,9 @@ pod "XZKit"
 ## 组件
 
 - [UICollectionView 自定义流布局：CollectionViewFlowLayout](./Documentation/CollectionViewFlowLayout)
+
+  <img src="./Documentation/CollectionViewFlowLayout/CollectionViewFlowLayout.gif" alt="CollectionViewFlowLayout" width="320"></img>
+
 - [UIView 内容状态视图：ContentStatusRepresentable](./Documentation/ContentStatusRepresentable)
 - [自定义导航条、全屏手势导航控制器：NavigationController](./Documentation/NavigationController)
 - [网络层框架：Networking](./Documentation/Networking)
